@@ -6,9 +6,8 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
-
 @ccclass
-export default class NewClass extends cc.Component 
+export default class Slice extends cc.Component 
 {
     @property(cc.Node)
     gameLayer:cc.Node = null;
@@ -81,6 +80,7 @@ export default class NewClass extends cc.Component
         for (let i:number = 0; i < results.length; i++) {
             let find:boolean = false;
             let result:cc.PhysicsRayCastResult = results[i];
+            if(!(result.collider instanceof cc.PhysicsPolygonCollider)) continue;
             for (let j:number = 0; j < pairs.length; j++) {
                 let pair:cc.PhysicsRayCastResult[] = pairs[j];
                 // 以第一个点为参考，如果碰撞盒子是同一个，证明是同一个物体
